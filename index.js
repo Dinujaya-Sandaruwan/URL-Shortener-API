@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const ShortUrl = require("./models/shortUrl");
 const uuidv4 = require("uuid").v4;
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
@@ -26,13 +27,10 @@ app.use(cors());
 //   useUnifiedTopology: true,
 // });
 
-mongoose.connect(
-  "mongodb+srv://dinujaya:JEJBHDsb0ZHeoeK5@cluster0.r8ha6lq.mongodb.net/?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(process.env.MONGO_DB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

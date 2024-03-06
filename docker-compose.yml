@@ -1,0 +1,14 @@
+version: '3'
+services:
+  api:
+    image: short-url-api
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - default
+
+networks:
+  default:
+    external:
+      name: nginx-proxy-manager_default
